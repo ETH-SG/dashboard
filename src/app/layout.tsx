@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
+import { AppKit } from "../../context/web3modal";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,8 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <AppKit>{children}</AppKit> {/* Ensure AppKit accepts children */}
       </body>
     </html>
   );
