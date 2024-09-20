@@ -1,12 +1,13 @@
 'use client'
-
 import { createAppKit } from '@reown/appkit/react'
-import { EthersAdapter } from '@reown/appkit-adapter-ethers' // Updated import
-import { mainnet, arbitrum } from '@reown/appkit/networks'
+import { EthersAdapter } from '@reown/appkit-adapter-ethers'
+import { sepolia, baseSepolia } from '@reown/appkit/networks'
 import Link from 'next/link'
 
-// 1. Get projectId at https://cloud.reown.com
-const projectId = '1b38382de5df0af627ac53c6ae591a16'
+
+// 1. Get projectId from https://cloud.reown.com
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
+
 
 // 2. Set Ethers adapters
 const ethers5Adapter = new EthersAdapter()
@@ -23,8 +24,8 @@ const metadata = {
 createAppKit({
   adapters: [ethers5Adapter],
   metadata: metadata,
-  networks: [mainnet, arbitrum],
-  projectId,
+  networks: [sepolia, baseSepolia],
+  projectId: projectId || '',
   features: {
     analytics: true // Optional - defaults to your Cloud configuration
   }
