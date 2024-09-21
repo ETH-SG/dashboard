@@ -4,6 +4,7 @@ import { generateApiKey } from "reversifi-sdk/src/services/supabase";
 import { useAccount, useReadContract } from "wagmi";
 import newAbi from "../new.json";
 import axios from "axios";
+import Card from "./Card";
 
 type ApiResponse = {
   data: {
@@ -71,22 +72,23 @@ const ProfileContent = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Profile</h2>
-      <h1>Generate API Key</h1>
-      <button
-        onClick={handleGenerateApiKey}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Generate API Key
-      </button>
-      {apiKey && (
-        <div className="mt-4">
-          <h2 className="text-lg font-semibold">Your API Key:</h2>
-          <p className="bg-gray-100 p-2 rounded break-all dark:text-black">{apiKey}</p>
-        </div>
-      )}
-      <br />
-
+      <Card>
+        <h2 className="text-4xl font-bold mb-4">Profile</h2>
+        <h1 className="text-2xl font-bold">Generate API Key</h1>
+        <button
+          onClick={handleGenerateApiKey}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Generate API Key
+        </button>
+        {apiKey && (
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold">Your API Key:</h2>
+            <p className="bg-neutral-600 p-2 rounded-lg">{apiKey}</p>
+          </div>
+        )}
+        <br />
+      </Card>
       {/* <div className="mt-8">
         <h1 className="text-xl font-bold mb-4">Escrow Factory Contract</h1>
         {isLoading ? (
@@ -113,6 +115,7 @@ const ProfileContent = () => {
       </div> */}
 
       <div className="mt-8">
+        <Card>
         <h1 className="text-xl font-bold mb-4">Escrow Factory Contract</h1>
         {isLoading ? (
           <p>Loading...</p>
@@ -145,6 +148,7 @@ const ProfileContent = () => {
         ) : (
           <h1>You have no escrow factory contract</h1>
         )}
+        </Card>
       </div>
     </div>
   );

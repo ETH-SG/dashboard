@@ -9,6 +9,7 @@ import {
 } from "wagmi";
 import newAbi from "../new.json";
 import axios from "axios";
+import Card from "./Card";
 
 import { Log } from "viem";
 
@@ -133,10 +134,11 @@ const DeployContent = () => {
 
   return (
     <div>
+      <Card>
       <h2 className="text-4xl font-black mb-4">Deploy</h2>
       <h1 className="font-bold text-2xl mb-2">Organization Address</h1>
-      <div className="border border-gray-700 p-2 rounded-lg">{account ? account : "No account connected"}</div>
-      
+      <div className="bg-neutral-600 p-2 rounded-lg">{account ? account : "No account connected"}</div>
+      </Card>
 
       <br />
       <br />
@@ -144,12 +146,14 @@ const DeployContent = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : apiResponse && apiResponse.data.length > 0 ? (
+        <Card>
         <div>
           <h1 className="font-bold text-2xl">Existing Escrow Factory Contract</h1>
-          <p>
+          <div className="bg-neutral-600 p-2 rounded-lg">
             Escrow factory contract is: {apiResponse.data[0].escrow_factory}
-          </p>
+          </div>
         </div>
+        </Card>
       ) : (
         <div>
           <h1 className="font-bold text-2xl mb-3">Deploy Contract with parameters</h1>
@@ -183,8 +187,9 @@ const DeployContent = () => {
               {isPending ? "Deploying..." : "Deploy Contract"}
             </button>
           </div>
+ 
         </div>
-      )}
+      )}   
 
       {(hash ||
         isConfirming ||
@@ -208,6 +213,7 @@ const DeployContent = () => {
         </div>
       )}
     </div>
+
   );
 };
 
