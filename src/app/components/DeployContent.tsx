@@ -45,9 +45,9 @@ const DeployContent = () => {
   const fetchFactoryEscrow = async (address: string) => {
     setIsLoading(true);
     try {
-      const response = await axios.get<ApiResponse>(
-        `http://34.84.200.57:8000/api/escrow/getFactoryEscrow/${address}`
-      );
+      const response = await axios.get<ApiResponse>(`/api/getFactoryEscrow`, {
+        params: { address },
+      });
       setApiResponse(response.data);
     } catch (error) {
       console.error("Error fetching factory escrow:", error);
@@ -118,15 +118,11 @@ const DeployContent = () => {
     escrowAddress: string
   ) => {
     try {
-      const response = await axios.post(
-        "http://34.84.200.57:8000/api/escrow/addEscrowFactory",
-        {
-          organization_address: organizationAddress,
-          escrow_factory: escrowAddress,
-        }
-      );
+      const response = await axios.post("/api/addEscrowFactory", {
+        organization_address: organizationAddress,
+        escrow_factory: escrowAddress,
+      });
       console.log("Escrow factory added successfully:", response.data);
-      // Optionally update UI or state based on successful addition
     } catch (error) {
       console.error("Error adding escrow factory:", error);
       setMessage("Error adding escrow factory to the database");
@@ -135,14 +131,14 @@ const DeployContent = () => {
 
   const claimName = async (userWalletAddress: string) => {
     try {
-      const response = await axios.post('/api/claim-name', {
+      const response = await axios.post("/api/claim-name", {
         name,
-        userWalletAddress
+        userWalletAddress,
       });
-      console.log('Response:', response.data);
+      console.log("Response:", response.data);
       return response.data;
     } catch (error) {
-      console.error('Error claiming name:', error);
+      console.error("Error claiming name:", error);
       throw error;
     }
   };
@@ -150,9 +146,11 @@ const DeployContent = () => {
   return (
     <div>
       <Card>
-      <h2 className="text-4xl font-black mb-4">Deploy</h2>
-      <h1 className="font-bold text-2xl mb-2">Organization Address</h1>
-      <div className="bg-neutral-900 p-2 rounded-lg">{account ? account : "No account connected"}</div>
+        <h2 className="text-4xl font-black mb-4">Deploy</h2>
+        <h1 className="font-bold text-2xl mb-2">Organization Address</h1>
+        <div className="bg-neutral-900 p-2 rounded-lg">
+          {account ? account : "No account connected"}
+        </div>
       </Card>
 
       <br />
@@ -162,50 +160,55 @@ const DeployContent = () => {
         <p>Loading...</p>
       ) : apiResponse && apiResponse.data.length > 0 ? (
         <Card>
-        <div>
-          <h1 className="font-bold text-2xl mb-2"> Escrow Factory Contract</h1>
-          <div className="bg-neutral-900 p-2 rounded-lg">
-            Escrow factory contract is: {apiResponse.data[0].escrow_factory}
+          <div>
+            <h1 className="font-bold text-2xl mb-2">
+              {" "}
+              Escrow Factory Contract
+            </h1>
+            <div className="bg-neutral-900 p-2 rounded-lg">
+              Escrow factory contract is: {apiResponse.data[0].escrow_factory}
+            </div>
           </div>
-        </div>
         </Card>
       ) : (
         <div>
           <Card>
-          <h1 className="font-bold text-2xl mb-3">Deploy Contract with parameters</h1>
-          <div>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="rounded-lg p-2 mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
-            />
-            <input
-              type="text"
-              placeholder="Address 1"
-              value={address1}
-              onChange={(e) => setAddress1(e.target.value)}
-              className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
-            />
-            <input
-              type="text"
-              placeholder="Address 2"
-              value={address2}
-              onChange={(e) => setAddress2(e.target.value)}
-              className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
-            />
-            <button
-              onClick={handleDeploy}
-              disabled={isPending || !name || !address1 || !address2}
-              className="border border-gray-700 hover:border-gray-400 p-2 rounded-lg mb-3 w-full bg-black hover:shadow-gray-300 hover:shadow-sm"
-            >
-              {isPending ? "Deploying..." : "Deploy Contract"}
-            </button>
-          </div>
+            <h1 className="font-bold text-2xl mb-3">
+              Deploy Contract with parameters
+            </h1>
+            <div>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="rounded-lg p-2 mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
+              />
+              <input
+                type="text"
+                placeholder="Address 1"
+                value={address1}
+                onChange={(e) => setAddress1(e.target.value)}
+                className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
+              />
+              <input
+                type="text"
+                placeholder="Address 2"
+                value={address2}
+                onChange={(e) => setAddress2(e.target.value)}
+                className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
+              />
+              <button
+                onClick={handleDeploy}
+                disabled={isPending || !name || !address1 || !address2}
+                className="border border-gray-700 hover:border-gray-400 p-2 rounded-lg mb-3 w-full bg-black hover:shadow-gray-300 hover:shadow-sm"
+              >
+                {isPending ? "Deploying..." : "Deploy Contract"}
+              </button>
+            </div>
           </Card>
         </div>
-      )}   
+      )}
 
       {(hash ||
         isConfirming ||
@@ -229,7 +232,6 @@ const DeployContent = () => {
         </div>
       )}
     </div>
-
   );
 };
 
