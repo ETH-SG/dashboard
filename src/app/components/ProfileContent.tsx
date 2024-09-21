@@ -82,7 +82,7 @@ const ProfileContent = () => {
       {apiKey && (
         <div className="mt-4">
           <h2 className="text-lg font-semibold">Your API Key:</h2>
-          <p className="bg-gray-100 p-2 rounded break-all">{apiKey}</p>
+          <p className="bg-gray-100 p-2 rounded break-all dark:text-black">{apiKey}</p>
         </div>
       )}
       <br />
