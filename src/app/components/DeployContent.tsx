@@ -12,7 +12,6 @@ import axios from "axios";
 
 import { Log } from "viem";
 
-// Define a type for the parsed log
 type ParsedEscrowCreatedLog = Log & {
   args: {
     escrow: string;
