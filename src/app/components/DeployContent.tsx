@@ -179,21 +179,21 @@ const DeployContent = () => {
             <div>
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Tell us your Name..."
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="rounded-lg p-2 mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
               />
               <input
                 type="text"
-                placeholder="Address 1"
+                placeholder="Your wallet Address..."
                 value={address1}
                 onChange={(e) => setAddress1(e.target.value)}
                 className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
               />
               <input
                 type="text"
-                placeholder="Address 2"
+                placeholder="Your wallet Address again..."
                 value={address2}
                 onChange={(e) => setAddress2(e.target.value)}
                 className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
