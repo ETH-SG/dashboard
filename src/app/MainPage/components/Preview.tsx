@@ -25,21 +25,21 @@ export function Preview() {
       label: "Deploy",
       href: "#",
       icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconBrandTabler className="text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "Profile",
       href: "#",
       icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconUserBolt className="text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "SDK Settings",
       href: "#",
       icon: (
-        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconSettings className="text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
   ];
@@ -49,8 +49,8 @@ export function Preview() {
   return (
     <div
       className={cn(
-        "rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-[85rem] mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
-        "h-[45rem]"
+        "rounded-md flex flex-col md:flex-row bg-neutral-800 w-full flex-1 max-w-[85rem] mx-auto border border-neutral-800 overflow-hidden",
+        "h-[45rem] mb-40 z-30"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -100,13 +100,13 @@ const Logo = () => {
       href="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-5 w-6 bg-black  rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-medium text-black dark:text-white whitespace-pre"
+        className="font-medium text-black  whitespace-pre"
       >
-        Dashboard
+        ReversiFi
       </motion.span>
     </Link>
   );
@@ -118,7 +118,11 @@ const LogoIcon = () => {
       href="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+    <Image
+      src="/ReversiFi.png"
+      alt="ReversiFi"
+      width={50}
+      height={50} />
     </Link>
   );
 };
@@ -139,7 +143,7 @@ const Dashboard = ({ activeLink }: IActiveLink) => {
 
   return (
     <div className="flex flex-1">
-      <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
+      <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-800 dark:border-neutral-700 bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
         {renderContent()}
       </div>
     </div>
