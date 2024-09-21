@@ -74,17 +74,17 @@ const ProfileContent = () => {
     <div>
       <Card>
         <h2 className="text-4xl font-bold mb-4">Profile</h2>
-        <h1 className="text-2xl font-bold">Generate API Key</h1>
+        <h1 className="text-2xl font-bold mb-4">Generate API Key</h1>
         <button
           onClick={handleGenerateApiKey}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-neutral-900 hover:border-gray-400 hover:shadow-gray-300 hover:shadow-sm text-white font-bold py-2 px-4 rounded"
         >
           Generate API Key
         </button>
         {apiKey && (
           <div className="mt-4">
             <h2 className="text-lg font-semibold">Your API Key:</h2>
-            <p className="bg-neutral-600 p-2 rounded-lg">{apiKey}</p>
+            <p className="bg-neutral-900 p-2 rounded-lg">{apiKey}</p>
           </div>
         )}
         <br />
@@ -116,12 +116,12 @@ const ProfileContent = () => {
 
       <div className="mt-8">
         <Card>
-        <h1 className="text-xl font-bold mb-4">Escrow Factory Contract</h1>
+        <h1 className="text-4xl font-bold mb-4">Escrow Factory Contract</h1>
         {isLoading ? (
           <p>Loading...</p>
         ) : apiResponse && apiResponse.data.length > 0 ? (
           <div>
-            <p>Escrow Factory: {apiResponse.data[0].escrow_factory}</p>
+            <p className="text-xl">Escrow Factory: {apiResponse.data[0].escrow_factory}</p>
             {result.isLoading ? (
               <p>Loading escrow data...</p>
             ) : result.error ? (

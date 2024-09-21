@@ -1,8 +1,17 @@
 import React from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <div className="h-12 p-1">
+    <div className="m-2 flex justify-between">
+      <div>
+        <Image 
+          src="/ReversiFi.png"
+          alt="ReversiFi"
+          width={50}
+          height={50}
+        />
+      </div>
       <w3m-button />
      
     </div>

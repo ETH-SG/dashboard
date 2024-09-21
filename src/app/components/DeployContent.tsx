@@ -137,7 +137,7 @@ const DeployContent = () => {
       <Card>
       <h2 className="text-4xl font-black mb-4">Deploy</h2>
       <h1 className="font-bold text-2xl mb-2">Organization Address</h1>
-      <div className="bg-neutral-600 p-2 rounded-lg">{account ? account : "No account connected"}</div>
+      <div className="bg-neutral-900 p-2 rounded-lg">{account ? account : "No account connected"}</div>
       </Card>
 
       <br />
@@ -148,14 +148,15 @@ const DeployContent = () => {
       ) : apiResponse && apiResponse.data.length > 0 ? (
         <Card>
         <div>
-          <h1 className="font-bold text-2xl">Existing Escrow Factory Contract</h1>
-          <div className="bg-neutral-600 p-2 rounded-lg">
+          <h1 className="font-bold text-2xl mb-2"> Escrow Factory Contract</h1>
+          <div className="bg-neutral-900 p-2 rounded-lg">
             Escrow factory contract is: {apiResponse.data[0].escrow_factory}
           </div>
         </div>
         </Card>
       ) : (
         <div>
+          <Card>
           <h1 className="font-bold text-2xl mb-3">Deploy Contract with parameters</h1>
           <div>
             <input
@@ -163,31 +164,31 @@ const DeployContent = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border border-gray-700 hover:border-purple-400 rounded-lg p-2 mb-3 w-full bg-black hover:shadow-purple-300 hover:shadow-sm"
+              className="rounded-lg p-2 mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
             />
             <input
               type="text"
               placeholder="Address 1"
               value={address1}
               onChange={(e) => setAddress1(e.target.value)}
-              className="border border-gray-700 hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-black hover:shadow-purple-300 hover:shadow-sm"
+              className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
             />
             <input
               type="text"
               placeholder="Address 2"
               value={address2}
               onChange={(e) => setAddress2(e.target.value)}
-              className="border border-gray-700 hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-black hover:shadow-purple-300 hover:shadow-sm"
+              className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
             />
             <button
               onClick={handleDeploy}
               disabled={isPending || !name || !address1 || !address2}
-              className="bg-purple-500 text-white p-2 rounded-lg disabled:bg-gray-300"
+              className="border border-gray-700 hover:border-gray-400 p-2 rounded-lg mb-3 w-full bg-black hover:shadow-gray-300 hover:shadow-sm"
             >
               {isPending ? "Deploying..." : "Deploy Contract"}
             </button>
           </div>
- 
+          </Card>
         </div>
       )}   
 
