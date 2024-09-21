@@ -33,22 +33,19 @@ export function Preview() {
     {
       label: "Profile",
       href: "#",
-      icon: (
-        <IconUserBolt className="text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
+      icon: <IconUserBolt className="text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "SDK Settings",
       href: "#",
-      icon: (
-        <IconSettings className="text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
+      icon: <IconSettings className="text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
   ];
   const [open, setOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Deploy");
   const { address } = useAccount();
   const [ensName, setEnsName] = useState<string>("NoENS");
+  const [ensDomain, setEnsDomain] = useState<string>("");
 
   useEffect(() => {
     if (address) {
@@ -65,20 +62,13 @@ export function Preview() {
 
       if (response.data && response.data.length > 0 && response.data[0].name) {
         setEnsName(response.data[0].name);
+        setEnsDomain(response.data[0].domain);
       } else {
         setEnsName("NoENS");
       }
     } catch (error) {
       console.error("Error fetching names:", error);
       setEnsName("NoENS");
-    }
-  };
-
-  const displayEnsName = () => {
-    if (ensName === "NoENS") {
-      return "NoENS";
-    } else {
-      return `${ensName}.reversifi.eth`;
     }
   };
 
@@ -107,7 +97,7 @@ export function Preview() {
           <div>
             <SidebarLink
               link={{
-                label: displayEnsName(),
+                label: `${ensName}${ensDomain}`,
                 href: "#",
                 icon: (
                   <Image
@@ -136,11 +126,7 @@ const Logo = () => {
       href="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <Image
-      src="/ReversiFi.png"
-      alt="ReversiFi"
-      width={50}
-      height={50} />
+      <Image src="/ReversiFi.png" alt="ReversiFi" width={50} height={50} />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -158,11 +144,7 @@ const LogoIcon = () => {
       href="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-    <Image
-      src="/ReversiFi.png"
-      alt="ReversiFi"
-      width={50}
-      height={50} />
+      <Image src="/ReversiFi.png" alt="ReversiFi" width={50} height={50} />
     </Link>
   );
 };
