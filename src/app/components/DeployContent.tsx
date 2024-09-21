@@ -104,9 +104,10 @@ const DeployContent = () => {
       const newEscrowAddress = parsedLog.args.escrow;
       setCreatedEscrowAddress(newEscrowAddress);
 
-      // Make POST request to add the new escrow factory
+      // After getting new Escrow Factory Contract Address
       if (account) {
         addEscrowFactory(account, newEscrowAddress);
+        claimName(account);
       }
     },
   });
@@ -128,6 +129,20 @@ const DeployContent = () => {
     } catch (error) {
       console.error("Error adding escrow factory:", error);
       setMessage("Error adding escrow factory to the database");
+    }
+  };
+
+  const claimName = async (userWalletAddress: string) => {
+    try {
+      const response = await axios.post('/api/claim-name', {
+        name,
+        userWalletAddress
+      });
+      console.log('Response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error claiming name:', error);
+      throw error;
     }
   };
 
