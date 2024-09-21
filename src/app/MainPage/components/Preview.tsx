@@ -16,7 +16,7 @@ import ProfileContent from "@/app/components/ProfileContent";
 import SDKSettingsContent from "@/app/components/SDKSettingContent";
 
 interface IActiveLink{
-  activeLink: any
+  activeLink: string
 }
 
 export function Preview() {

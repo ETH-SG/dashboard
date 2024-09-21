@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// @ts-expect-error dari sana nya
 import { generateApiKey } from "reversifi-sdk/src/services/supabase"
 import { useReadContract } from "wagmi";
 import newAbi from "../new.json"

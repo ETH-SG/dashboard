@@ -3,12 +3,20 @@
 import React, { useEffect, useState } from "react";
 import {
   useAccount,
-  usePublicClient,
   useWaitForTransactionReceipt,
   useWriteContract,
   useWatchContractEvent,
 } from "wagmi";
 import newAbi from "../new.json";
+
+import { Log } from "viem";
+
+// Define a type for the parsed log
+type ParsedEscrowCreatedLog = Log & {
+  args: {
+    escrow: string;
+  };
+};
 
 const DeployContent = () => {
   const { address } = useAccount();
@@ -35,14 +43,17 @@ const DeployContent = () => {
   const [createdEscrowAddress, setCreatedEscrowAddress] = useState("");
 
   // Watch for EscrowCreated event
+  // Watch for EscrowCreated event
   useWatchContractEvent({
     address: "0xb38e4d2bee4Ea3cb7EcFf3a0dF8aFc9Fafca023D",
     abi: newAbi,
     eventName: "EscrowCreated",
-    onLogs(logs) {
+    onLogs(logs: Log[]) {
       console.log("EscrowCreated event:", logs);
-      if (logs[0] && logs[0].args && logs[0].args.escrow) {
-        setCreatedEscrowAddress(logs[0].args.escrow);
+      // Parse the log
+      const parsedLog = logs[0] as ParsedEscrowCreatedLog;
+      if (parsedLog && parsedLog.args && parsedLog.args.escrow) {
+        setCreatedEscrowAddress(parsedLog.args.escrow);
       }
     },
   });
@@ -107,7 +118,12 @@ const DeployContent = () => {
           {isPending ? "Deploying..." : "Deploy Contract"}
         </button>
       </div>
-      {(hash || isConfirming || isConfirmed || error || message || createdEscrowAddress) && (
+      {(hash ||
+        isConfirming ||
+        isConfirmed ||
+        error ||
+        message ||
+        createdEscrowAddress) && (
         <div>
           {hash && <p>Transaction Hash: {hash}</p>}
           {isConfirming && <p>Waiting for confirmation...</p>}
@@ -128,41 +144,3 @@ const DeployContent = () => {
 };
 
 export default DeployContent;
-
-// useEffect(() => {
-//   async function getContractAddress() {
-//     if (isConfirmed && hash && publicClient) {
-//       try {
-//         const receipt = await publicClient.getTransactionReceipt({ hash });
-//         if (receipt.contractAddress) {
-//           setContractAddress(receipt.contractAddress);
-//         } else if (receipt.status === "success") {
-//           const tx = (await publicClient.getTransaction({
-//             hash,
-//           })) as Transaction;
-//           if (tx.creates) {
-//             setContractAddress(tx.creates);
-//           } else {
-//             setContractAddress("");
-//           }
-//         } else {
-//           setContractAddress("");
-//           setMessage("Transaction was not successful");
-//         }
-//       } catch (error) {
-//         console.error("Error getting contract address:", error);
-//         setMessage("Error getting contract address");
-//         setContractAddress("");
-//       }
-//     }
-//   }
-
-//   getContractAddress();
-// }, [isConfirmed, hash, publicClient]);
-
-{
-  /* {contractAddress && (
-                <p>Contract deployed at: {contractAddress}</p>
-              )} */
-}
-
