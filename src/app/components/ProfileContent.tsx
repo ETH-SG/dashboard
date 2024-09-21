@@ -17,15 +17,13 @@ type ApiResponse = {
 const ProfileContent = () => {
   const [apiKey, setApiKey] = useState("");
   const { address } = useAccount();
-  const [account, setAccount] = useState<`0x${string}` | undefined>(undefined);
 
   const [apiResponse, setApiResponse] = useState<ApiResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (address) {
-      setAccount(address);
       fetchFactoryEscrow(address);
     }
   }, [address]);
@@ -39,7 +37,7 @@ const ProfileContent = () => {
       setApiResponse(response.data);
     } catch (error) {
       console.error("Error fetching factory escrow:", error);
-      setMessage("Error fetching factory escrow data");
+      // setMessage("Error fetching factory escrow data");
     } finally {
       setIsLoading(false);
     }
