@@ -9,6 +9,7 @@ import {
 } from "wagmi";
 import newAbi from "../new.json";
 import axios from "axios";
+import Card from "./Card";
 
 import { Log } from "viem";
 
@@ -133,9 +134,11 @@ const DeployContent = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-black mb-4">Deploy</h2>
-      <h1 className="font-bold">Connected Account Address</h1>
-      {account ? account : "No account connected"}
+      <Card>
+      <h2 className="text-4xl font-black mb-4">Deploy</h2>
+      <h1 className="font-bold text-2xl mb-2">Organization Address</h1>
+      <div className="bg-neutral-900 p-2 rounded-lg">{account ? account : "No account connected"}</div>
+      </Card>
 
       <br />
       <br />
@@ -143,47 +146,51 @@ const DeployContent = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : apiResponse && apiResponse.data.length > 0 ? (
+        <Card>
         <div>
-          <h1 className="font-bold">Existing Escrow Factory Contract</h1>
-          <p>
+          <h1 className="font-bold text-2xl mb-2"> Escrow Factory Contract</h1>
+          <div className="bg-neutral-900 p-2 rounded-lg">
             Escrow factory contract is: {apiResponse.data[0].escrow_factory}
-          </p>
+          </div>
         </div>
+        </Card>
       ) : (
         <div>
-          <h1 className="font-bold">Deploy Contract with parameters</h1>
+          <Card>
+          <h1 className="font-bold text-2xl mb-3">Deploy Contract with parameters</h1>
           <div>
             <input
               type="text"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border p-2 mb-2 w-full"
+              className="rounded-lg p-2 mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
             />
             <input
               type="text"
               placeholder="Address 1"
               value={address1}
               onChange={(e) => setAddress1(e.target.value)}
-              className="border p-2 mb-2 w-full"
+              className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
             />
             <input
               type="text"
               placeholder="Address 2"
               value={address2}
               onChange={(e) => setAddress2(e.target.value)}
-              className="border p-2 mb-2 w-full"
+              className="  hover:border-purple-400 p-2 rounded-lg mb-3 w-full bg-neutral-900 hover:shadow-purple-300 hover:shadow-sm"
             />
             <button
               onClick={handleDeploy}
               disabled={isPending || !name || !address1 || !address2}
-              className="bg-blue-500 text-white p-2 rounded disabled:bg-gray-300"
+              className="border border-gray-700 hover:border-gray-400 p-2 rounded-lg mb-3 w-full bg-black hover:shadow-gray-300 hover:shadow-sm"
             >
               {isPending ? "Deploying..." : "Deploy Contract"}
             </button>
           </div>
+          </Card>
         </div>
-      )}
+      )}   
 
       {(hash ||
         isConfirming ||
@@ -207,6 +214,7 @@ const DeployContent = () => {
         </div>
       )}
     </div>
+
   );
 };
 

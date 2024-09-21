@@ -40,6 +40,7 @@ createAppKit({
     email: true,
     socials: ['google', 'x', 'github', 'discord', 'apple', 'facebook', 'farcaster'],
     emailShowWallets: true, // default to true
+    
   },
   allWallets: 'HIDE', // default to SHOW
 })
