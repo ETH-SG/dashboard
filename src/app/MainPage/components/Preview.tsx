@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import manu from "./manu.png"
+import manu from "./manu.png";
 import { cn } from "../../../../lib/utils";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
 import Link from "next/link";
@@ -14,9 +14,11 @@ import { motion } from "framer-motion";
 import DeployContent from "@/app/components/DeployContent";
 import ProfileContent from "@/app/components/ProfileContent";
 import SDKSettingsContent from "@/app/components/SDKSettingContent";
+import { useAccount } from "wagmi";
+import axios from "axios";
 
-interface IActiveLink{
-  activeLink: string
+interface IActiveLink {
+  activeLink: string;
 }
 
 export function Preview() {
@@ -45,6 +47,32 @@ export function Preview() {
   ];
   const [open, setOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Deploy");
+  const { address } = useAccount();
+  const [ensName, setEnsName] = useState<string>("NoENS");
+
+  useEffect(() => {
+    if (address) {
+      fetchAndSetName(address);
+    }
+  }, [address]);
+
+  const fetchAndSetName = async (userWalletAddress: string) => {
+    try {
+      const response = await axios.get(
+        `/api/get-names?address=${userWalletAddress}`
+      );
+      console.log("Names:", response.data);
+
+      if (response.data && response.data.length > 0 && response.data[0].name) {
+        setEnsName(response.data[0].name);
+      } else {
+        setEnsName("NoENS");
+      }
+    } catch (error) {
+      console.error("Error fetching names:", error);
+      setEnsName("NoENS");
+    }
+  };
 
   return (
     <div
@@ -71,7 +99,7 @@ export function Preview() {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
+                label: `${ensName}`,
                 href: "#",
                 icon: (
                   <Image
