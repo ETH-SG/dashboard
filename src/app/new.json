@@ -1,93 +1,7 @@
 [
   {
     "type": "constructor",
-    "inputs": [
-      {
-        "name": "name",
-        "type": "string",
-        "internalType": "string"
-      },
-      {
-        "name": "_admin",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "_registry",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "acceptSeller",
-    "inputs": [
-      {
-        "name": "escrow",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "changeEscrowStateConfirm",
-    "inputs": [
-      {
-        "name": "escrow",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "seller",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "changeEscrowStateDispute",
-    "inputs": [
-      {
-        "name": "escrow",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "changeEscrowStateFinish",
-    "inputs": [
-      {
-        "name": "escrow",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "changeEscrowStateRelease",
-    "inputs": [
-      {
-        "name": "escrow",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
+    "inputs": [],
     "stateMutability": "nonpayable"
   },
   {
@@ -95,38 +9,33 @@
     "name": "createEscrow",
     "inputs": [
       {
-        "name": "user",
+        "name": "name",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "admin",
         "type": "address",
         "internalType": "address"
       },
       {
-        "name": "amount",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "token",
+        "name": "registry",
         "type": "address",
         "internalType": "address"
-      },
-      {
-        "name": "orderId",
-        "type": "uint256",
-        "internalType": "uint256"
       }
     ],
     "outputs": [
       {
         "name": "",
         "type": "address",
-        "internalType": "contract Escrow"
+        "internalType": "contract EscrowFactory"
       }
     ],
     "stateMutability": "nonpayable"
   },
   {
     "type": "function",
-    "name": "escrows",
+    "name": "escrowsFactory",
     "inputs": [
       {
         "name": "",
@@ -138,26 +47,7 @@
       {
         "name": "",
         "type": "address",
-        "internalType": "contract Escrow"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "escrowsMap",
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "address",
-        "internalType": "address"
+        "internalType": "contract EscrowFactory"
       }
     ],
     "stateMutability": "view"

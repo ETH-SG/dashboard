@@ -83,7 +83,7 @@ const DeployContent = () => {
     try {
       writeContract({
         abi: newAbi,
-        address: "0xE1654C7e98955a64B069EE3053f9F786a43D5a35",
+        address: "0xC895D952B88217A65435C27Dd101f784b5046163",
         functionName: "createEscrow",
         args: [name, address1, address2],
       });
@@ -95,7 +95,7 @@ const DeployContent = () => {
 
   // Watch for EscrowCreated event
   useWatchContractEvent({
-    address: "0xE1654C7e98955a64B069EE3053f9F786a43D5a35",
+    address: "0xC895D952B88217A65435C27Dd101f784b5046163",
     abi: newAbi,
     eventName: "EscrowCreated",
     onLogs(logs: Log[]) {
