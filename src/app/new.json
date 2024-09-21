@@ -1,0 +1,81 @@
+[
+    {
+      "type": "constructor",
+      "inputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "createEscrow",
+      "inputs": [
+        {
+          "name": "name",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "admin",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "registry",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract EscrowFactory"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "escrowsFactory",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract EscrowFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getAllEscrow",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]",
+          "internalType": "address[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "EscrowCreated",
+      "inputs": [
+        {
+          "name": "escrow",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    }
+  ]
