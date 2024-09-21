@@ -12,7 +12,7 @@ export function GetStartedButton() {
                 as="button"
                 className="bg-black text-white flex items-center space-x-2"
             >
-                <span>Get Started</span>
+                <span>Connect Button to Get Started</span>
             </HoverBorderGradient>
         </Link>
     </div>
