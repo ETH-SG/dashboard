@@ -8,6 +8,7 @@ import {
   useWatchContractEvent,
 } from "wagmi";
 import newAbi from "../new.json";
+import axios from "axios";
 
 import { Log } from "viem";
 
@@ -52,11 +53,35 @@ const DeployContent = () => {
       console.log("EscrowCreated event:", logs);
       // Parse the log
       const parsedLog = logs[0] as ParsedEscrowCreatedLog;
-      if (parsedLog && parsedLog.args && parsedLog.args.escrow) {
-        setCreatedEscrowAddress(parsedLog.args.escrow);
+      const newEscrowAddress = parsedLog.args.escrow;
+      setCreatedEscrowAddress(newEscrowAddress);
+
+      // Make POST request to add the new escrow factory
+      if (account) {
+        addEscrowFactory(account, newEscrowAddress);
       }
     },
   });
+
+  const addEscrowFactory = async (
+    organizationAddress: string,
+    escrowAddress: string
+  ) => {
+    try {
+      const response = await axios.post(
+        "http://34.84.200.57:8000/api/escrow/addEscrowFactory",
+        {
+          organization_address: organizationAddress,
+          escrow_factory: escrowAddress,
+        }
+      );
+      console.log("Escrow factory added successfully:", response.data);
+      // Optionally update UI or state based on successful addition
+    } catch (error) {
+      console.error("Error adding escrow factory:", error);
+      setMessage("Error adding escrow factory to the database");
+    }
+  };
 
   useEffect(() => {
     if (isConfirmed && createdEscrowAddress) {
