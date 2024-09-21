@@ -106,7 +106,7 @@ const DeployContent = () => {
       setCreatedEscrowAddress(newEscrowAddress);
 
       // After getting new Escrow Factory Contract Address
-      if (account) {
+      if (account && newEscrowAddress) {
         addEscrowFactory(account, newEscrowAddress);
         claimName(account);
       }

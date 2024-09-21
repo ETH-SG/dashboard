@@ -97,7 +97,7 @@ export function Preview() {
           <div>
             <SidebarLink
               link={{
-                label: `${ensName}${ensDomain}`,
+                label: `${ensName}.${ensDomain}`,
                 href: "#",
                 icon: (
                   <Image
