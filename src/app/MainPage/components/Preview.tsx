@@ -74,6 +74,14 @@ export function Preview() {
     }
   };
 
+  const displayEnsName = () => {
+    if (ensName === "NoENS") {
+      return "NoENS";
+    } else {
+      return `${ensName}.reversifi.eth`;
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -99,7 +107,7 @@ export function Preview() {
           <div>
             <SidebarLink
               link={{
-                label: `${ensName}`,
+                label: displayEnsName(),
                 href: "#",
                 icon: (
                   <Image
