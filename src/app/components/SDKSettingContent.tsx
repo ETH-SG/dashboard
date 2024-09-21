@@ -18,7 +18,6 @@ const handleClick = () => {
     
    ....
   };
-
   return (
   <div>
   .....
@@ -30,10 +29,10 @@ const handleClick = () => {
 
 const SDKSettingsContent = () => (
   <div>
-    <h2 className="text-2xl font-bold mb-4">SDK Settings and Snippets</h2>
-    <h1> Snippets</h1>
+    <h2 className="text-4xl font-bold mb-4">SDK Settings and Snippets</h2>
+    <h1 className='text-2xl bold mb-3'>Snippets:</h1>
     <CodeBlock code={codeExample} language="js">
-      <CodeBlock.Code className="bg-gray-900 p-6 rounded-xl shadow-lg">
+      <CodeBlock.Code className="bg-neutral-800 p-6 rounded-xl shadow-lg">
         <CodeBlock.LineContent>
           <CodeBlock.Token />
         </CodeBlock.LineContent>
