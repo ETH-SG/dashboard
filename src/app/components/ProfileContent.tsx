@@ -32,13 +32,12 @@ const ProfileContent = () => {
   const fetchFactoryEscrow = async (address: string) => {
     setIsLoading(true);
     try {
-      const response = await axios.get<ApiResponse>(
-        `http://34.84.200.57:8000/api/escrow/getFactoryEscrow/${address}`
-      );
+      const response = await axios.get<ApiResponse>(`/api/getFactoryEscrow`, {
+        params: { address },
+      });
       setApiResponse(response.data);
     } catch (error) {
       console.error("Error fetching factory escrow:", error);
-      // setMessage("Error fetching factory escrow data");
     } finally {
       setIsLoading(false);
     }
@@ -89,65 +88,43 @@ const ProfileContent = () => {
         )}
         <br />
       </Card>
-      {/* <div className="mt-8">
-        <h1 className="text-xl font-bold mb-4">Escrow Factory Contract</h1>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : apiResponse && apiResponse.data.length > 0 ? (
-          <div>
-            <p>Escrow Factory: {apiResponse.data[0].escrow_factory}</p>
-          </div>
-        ) : (
-          <h1>You have no escrow factory contract</h1>
-        )}
-      </div>
-
-      <div>
-        <h1 className="mt-8">History transactions</h1>
-
-        {result.isLoading ? (
-          <p>Loading escrow data...</p>
-        ) : result.error ? (
-          <p>Error loading escrow data: {result.error.message}</p>
-        ) : (
-          <p>Escrow data loaded. Check console for details.</p>
-        )}
-      </div> */}
 
       <div className="mt-8">
         <Card>
-        <h1 className="text-4xl font-bold mb-4">Escrow Factory Contract</h1>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : apiResponse && apiResponse.data.length > 0 ? (
-          <div>
-            <p className="text-xl">Escrow Factory: {apiResponse.data[0].escrow_factory}</p>
-            {result.isLoading ? (
-              <p>Loading escrow data...</p>
-            ) : result.error ? (
-              <p>Error loading escrow data: {result.error.message}</p>
-            ) : result.data === undefined ? (
-              <p>No data returned from contract.</p>
-            ) : (result.data as string[]).length > 0 ? (
-              <div>
-                <h2 className="text-lg font-semibold mt-4">
-                  Escrow Addresses:
-                </h2>
-                <ul className="list-disc pl-5">
-                  {(result.data as string[]).map((address, index) => (
-                    <li key={index} className="mb-2">
-                      <span className="font-mono">{address}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <p>No escrow addresses found.</p>
-            )}
-          </div>
-        ) : (
-          <h1>You have no escrow factory contract</h1>
-        )}
+          <h1 className="text-4xl font-bold mb-4">Escrow Factory Contract</h1>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : apiResponse && apiResponse.data.length > 0 ? (
+            <div>
+              <p className="text-xl">
+                Escrow Factory: {apiResponse.data[0].escrow_factory}
+              </p>
+              {result.isLoading ? (
+                <p>Loading escrow data...</p>
+              ) : result.error ? (
+                <p>Error loading escrow data: {result.error.message}</p>
+              ) : result.data === undefined ? (
+                <p>No data returned from contract.</p>
+              ) : (result.data as string[]).length > 0 ? (
+                <div>
+                  <h2 className="text-lg font-semibold mt-4">
+                    Escrow Addresses:
+                  </h2>
+                  <ul className="list-disc pl-5">
+                    {(result.data as string[]).map((address, index) => (
+                      <li key={index} className="mb-2">
+                        <span className="font-mono">{address}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p>No escrow addresses found.</p>
+              )}
+            </div>
+          ) : (
+            <h1>You have no escrow factory contract</h1>
+          )}
         </Card>
       </div>
     </div>
