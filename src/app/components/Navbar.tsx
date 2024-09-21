@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="m-5 flex justify-between">
+    <div className="m-5 flex relative justify-between z-30">
       <div>
         <Link href="/">
         <Image 
