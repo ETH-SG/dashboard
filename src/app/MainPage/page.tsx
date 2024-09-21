@@ -1,42 +1,3 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import { useAccount, useDeployContract } from "wagmi";
-// import wagmiAbi from "../abii.json";
-
-// const MainPage = () => {
-//   const [account, setAccount] = useState<`0x${string}` | undefined>(undefined);
-//   const { address } = useAccount();
-//   const { data: hash, error, isPending, deployContract } = useDeployContract();
-
-//   useEffect(() => {
-//     if (address) {
-//       setAccount(address);
-//     }
-//   }, [address]);
-
-//   return (
-//     <div>
-//       {account ? account : "No account connected"}
-//       <div>
-//         <button
-//           onClick={() =>
-//             deployContract({
-//               abi: wagmiAbi,
-//               args: ["ss", "0x5073c3929c9BdECd87Cc63068Fd3185F0b6f22A5", "0x5073c3929c9BdECd87Cc63068Fd3185F0b6f22A5"],
-//               bytecode:
-//                 "0x...",
-//             })
-//           }
-//         >
-//           Deploy Contract
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MainPage;
-
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -144,26 +105,11 @@ const MainPage = () => {
 
   return (
     // <div>
-    //   <button
-    //     onClick={() =>
-    //       writeContract({
-    //         abi: newAbi,
-    //         address: "0xfa87eb972066e19c337f222368200418034127e3",
-    //         functionName: "createEscrow",
-    //         args: [
-    //           "nameee",
-    //           "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
-    //           "0x5073c3929c9BdECd87Cc63068Fd3185F0b6f22A5",
-    //         ],
-    //       })
-    //     }
-    //   >
-    //     Transfer
-    //   </button>
     //   <h1 className="text-xl font-bold">Organization Account</h1>
     //   <div>{account ? account : "No account connected"}</div>
 
     //   <h1 className="text-xl font-bold">Deploy Contracts with params</h1>
+
     //   <div>
     //     <button onClick={handleDeploy} disabled={isPending}>
     //       {isPending ? "Deploying..." : "Deploy Contract"}
